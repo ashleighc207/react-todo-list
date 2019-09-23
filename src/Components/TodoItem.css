@@ -15,6 +15,16 @@
   width: 80%;
 }
 
+.TodoItem--description_done {
+  width: 80%;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.TodoItem--description_done + .TodoItem--icons > .edit {
+  display: none;
+}
+
 .TodoItem:nth-of-type(odd){
   background: rgba(114,66,245, 0.20);
   border-radius: 5px;

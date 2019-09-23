@@ -9,13 +9,19 @@ class TodoItem extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDone = this.handleDone.bind(this);
     this.state = {
       editMode: false,
-      editedItem: this.props.description
+      editedItem: this.props.description,
+      done: false
     }
   }
   handleEdit(evt){
     this.setState({editMode: !this.state.editMode})
+  }
+
+  handleDone(evt){
+    this.setState({status: !this.state.status})
   }
 
   handleRemove(evt){
@@ -42,7 +48,7 @@ class TodoItem extends Component {
     return(
       <div className={this.state.editMode ? "TodoItem TodoItem--edit" : "TodoItem"} id={this.props.id}>
           {!this.state.editMode ?
-            <p className="TodoItem--description">{this.props.item}</p>
+            <p onClick={this.handleDone} className={!this.state.status ? "TodoItem--description" : "TodoItem--description_done"}>{this.props.item}</p>
           :
           <div className="TodoItem--edit_input">
           <form onSubmit={this.handleUpdate} className="TodoItem--form_edit">
@@ -65,8 +71,8 @@ class TodoItem extends Component {
         }
         {!this.state.editMode ?
           <div className="TodoItem--icons">
-            <i onClick={this.handleEdit} className="material-icons">edit</i>
-            <i onClick={this.handleRemove} className="material-icons">delete</i>
+            <i onClick={this.handleEdit} className="material-icons edit">edit</i>
+            <i onClick={this.handleRemove} className="material-icons delete">delete</i>
           </div>
           : null }
       </div>
