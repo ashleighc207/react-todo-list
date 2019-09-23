@@ -1,0 +1,36 @@
+.TodoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 30px;
+}
+
+.TodoItem--description {
+  width: 80%;
+}
+
+.TodoItem:nth-of-type(odd){
+  background: rgba(114,66,245, 0.20);
+  border-radius: 5px;
+}
+
+.TodoItem:nth-of-type(even):hover {
+  background: rgba(114,66,245, 0.15);
+}
+
+.TodoItem:nth-of-type(odd):hover {
+  background: rgba(114,66,245, 0.25);
+}
+
+.TodoItem--icons i {
+  color: rgba(114,66,245, 0.8);
+}
+
+.TodoItem--icons i:first-child {
+  margin-right: 15px;
+}
+
+.hidden {
+  display: none;
+}
