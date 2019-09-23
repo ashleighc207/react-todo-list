@@ -47,7 +47,8 @@ class TodoForm extends Component {
           <div className="TodoForm--input_container">
             <label className="TodoForm--label" htmlFor="new-item">Add New Item</label>
             <input
-            className="TodoForm--input"
+              className="TodoForm--input"
+              type="text"
               name="description"
               id="new-item"
               value={this.state.description}

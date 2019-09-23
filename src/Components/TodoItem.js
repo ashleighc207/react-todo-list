@@ -7,42 +7,65 @@ class TodoItem extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.state = {
+      editMode: false,
+      editedItem: this.props.description
+    }
   }
   handleEdit(evt){
-    this.props.editItem(evt, this.props.id)
+    this.setState({editMode: !this.state.editMode})
   }
-  showEdit(evt) {
-    let thisItem = evt.target.parentNode.parentNode;
-    thisItem.querySelector('.TodoItem--description').classList.toggle('hidden')
-    thisItem.querySelector('.TodoItem--edit_input').classList.toggle('hidden')
 
-  }
   handleRemove(evt){
     this.props.removeItem(this.props.id)
   }
 
   handleChange(evt){
-    this.props.editValue(evt)
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  handleCancel(evt){
+    this.setState({editMode: false})
+  }
+
+  handleUpdate(evt){
+    evt.preventDefault();
+    this.props.editItem(this.props.id, this.state.editedItem)
+    this.setState({editMode: false})
   }
 
   render(){
     return(
       <div className="TodoItem" id={this.props.id}>
+          {!this.state.editMode ?
             <p className="TodoItem--description">{this.props.item}</p>
-          <div className="hidden TodoItem--edit_input">
-            <label htmlFor="edit-item">Edit Item</label>
-            <input
-              name="description"
-              id="edit-item"
-              value={this.props.description}
-              onChange={this.handleChange}
-              parentid={this.props.id}
-            />
+          :
+          <div className="TodoItem--edit_input">
+          <form onSubmit={this.handleUpdate} className="TodoItem--form_edit">
+              <label htmlFor="edit-item">Edit Item</label>
+              <input
+                type="text"
+                name="editedItem"
+                id="edit-item"
+                onChange={this.handleChange}
+                parentid={this.props.id}
+                value={this.state.editedItem}
+              />
+              <button className="TodoItem--button_save">Save</button>
+              <i className="material-icons" onClick={this.handleCancel}>close</i>
+            </form>
           </div>
-        <div className="TodoItem--icons">
-          <i onClick={this.showEdit} className="material-icons">edit</i>
-          <i onClick={this.handleRemove} className="material-icons">delete</i>
-        </div>
+        }
+        {!this.state.editMode ?
+          <div className="TodoItem--icons">
+            <i onClick={this.handleEdit} className="material-icons">edit</i>
+            <i onClick={this.handleRemove} className="material-icons">delete</i>
+          </div>
+          : null }
       </div>
     )
   }

@@ -12,7 +12,6 @@ class TodoList extends Component {
     this.addItem = this.addItem.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.editItem = this.editItem.bind(this)
-    this.editValue = this.editValue.bind(this)
   }
 
   addItem(item) {
@@ -28,21 +27,17 @@ class TodoList extends Component {
     })});
   }
 
-  editItem(val, item){
-    let thisItem = document.getElementById(item);
-    console.log(val, item)
-  }
-
-  editValue(evt) {
-    evt.persist();
-    let curId = evt.target.getAttribute('parentid');
-    this.setState(prevState => {
-      list: prevState.list.map(i => {
-        if(curId && i.id === curId){
-          i.description = evt.target.value;
-        }
-      })
+  editItem(itemId, newItem) {
+    const editedItems = this.state.list.map(item => {
+      console.log(item)
+      if(item.id === itemId){
+        return {...item, description: newItem}
+      }
+        return item;
     })
+
+    this.setState({ list: editedItems })
+
   }
 
   render() {
@@ -56,8 +51,7 @@ class TodoList extends Component {
                     item={item.description}
                     removeItem={this.removeItem}
                     editItem={this.editItem}
-                    editMode={item.editMode}
-                    editValue={this.editValue}
+                    description={item.description}
                   />
         })}
         <TodoForm
