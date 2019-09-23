@@ -5,7 +5,7 @@
 ## Description
 This is a simple to-do list for working with React forms.
 
-<!-- <img src="example.png" alt="Example image" width="350" align="center"/> -->
+<img src="example.png" alt="Example image" width="350" align="center"/>
 
 ## How to Launch the App
 Download or clone this repo to your machine
