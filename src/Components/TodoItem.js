@@ -40,13 +40,14 @@ class TodoItem extends Component {
 
   render(){
     return(
-      <div className="TodoItem" id={this.props.id}>
+      <div className={this.state.editMode ? "TodoItem TodoItem--edit" : "TodoItem"} id={this.props.id}>
           {!this.state.editMode ?
             <p className="TodoItem--description">{this.props.item}</p>
           :
           <div className="TodoItem--edit_input">
           <form onSubmit={this.handleUpdate} className="TodoItem--form_edit">
-              <label htmlFor="edit-item">Edit Item</label>
+            <div className="TodoItem--input_container">
+              <label className="TodoItem--label" htmlFor="edit-item">Edit Item</label>
               <input
                 type="text"
                 name="editedItem"
@@ -54,7 +55,9 @@ class TodoItem extends Component {
                 onChange={this.handleChange}
                 parentid={this.props.id}
                 value={this.state.editedItem}
+                className="TodoItem--input"
               />
+            </div>
               <button className="TodoItem--button_save">Save</button>
               <i className="material-icons" onClick={this.handleCancel}>close</i>
             </form>

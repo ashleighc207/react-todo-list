@@ -4,6 +4,11 @@
   justify-content: space-between;
   width: 100%;
   padding: 0px 30px;
+  min-height: unset;
+}
+
+.TodoItem--edit {
+  min-height: 100px;
 }
 
 .TodoItem--description {
@@ -31,6 +36,57 @@
   margin-right: 15px;
 }
 
-.hidden {
-  display: none;
+.TodoItem--input_container {
+  position: relative;
+  width: 100%;
+}
+
+.TodoItem--edit_input {
+  width: 100%;
+}
+
+.TodoItem--form_edit {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.TodoItem--input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #424242;
+  width: 90%;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.TodoItem--input:focus {
+  outline: none;
+  border-bottom-color: #7242f5;
+}
+
+.TodoItem--label {
+  position: absolute;
+  left: 10px;
+  font-size: 12px;
+  top: -12px;
+  opacity: 0.8;
+  color: #7242f5;
+}
+
+.TodoItem--button_save {
+  background: #7242f5;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 29px;
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.TodoItem--button_save:focus {
+  outline: none;
 }

@@ -29,7 +29,6 @@ class TodoList extends Component {
 
   editItem(itemId, newItem) {
     const editedItems = this.state.list.map(item => {
-      console.log(item)
       if(item.id === itemId){
         return {...item, description: newItem}
       }
